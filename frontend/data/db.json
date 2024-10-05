@@ -1,0 +1,82 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Computer67_",
+      "price": 4300,
+      "checked": true
+    },
+    {
+      "id": "2",
+      "name": "Printer",
+      "price": 2300,
+      "checked": false
+    },
+    {
+      "id": "3",
+      "name": "Smart phone",
+      "price": 4200,
+      "checked": false
+    },
+    {
+      "id": "5",
+      "name": "Keyboard",
+      "price": 120,
+      "checked": false
+    },
+    {
+      "id": "6",
+      "name": "Batterie",
+      "price": 1400,
+      "checked": false
+    },
+    {
+      "id": "7",
+      "name": "USB",
+      "price": 60,
+      "checked": true
+    },
+    {
+      "id": "55a6",
+      "name": "power bank",
+      "price": "1200",
+      "checked": false
+    },
+    {
+      "id": "5b67",
+      "name": "PC ",
+      "price": "4900",
+      "checked": false
+    },
+    {
+      "id": "3118",
+      "name": "Pc HP",
+      "price": "6900",
+      "checked": true
+    },
+    {
+      "id": "9f9a",
+      "name": "Pc sumsung",
+      "price": "7800",
+      "checked": true
+    },
+    {
+      "id": "723a",
+      "name": "prod",
+      "price": "01224",
+      "checked": false
+    },
+    {
+      "id": "43a4",
+      "name": "prod1",
+      "price": "988",
+      "checked": false
+    },
+    {
+      "id": "04ff",
+      "name": "prod12",
+      "price": "9880",
+      "checked": false
+    }
+  ]
+}
