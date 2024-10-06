@@ -6,6 +6,9 @@ This project is a web application for managing products and their categories.
 It allows users to perform CRUD (Create, Read, Update, Delete) operations on products and categories. 
 The application is built using **ReactJS** for the frontend and **Spring Boot** with **MySQL** for the backend.
 
+## Application Screenshots
+![image](https://github.com/user-attachments/assets/f1c481ad-0aa3-448c-848c-e72a8ff5dcb9)
+
 
 ## Features
 
