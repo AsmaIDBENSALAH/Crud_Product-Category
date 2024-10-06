@@ -29,7 +29,7 @@ The application is built using **ReactJS** for the frontend and **Spring Boot** 
     - **JPA/Hibernate**: For interacting with the database.
     - **Maven**: For dependency management.
     
-    ## Getting Started
+   
 
 ### Prerequisites
 
