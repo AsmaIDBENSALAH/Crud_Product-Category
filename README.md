@@ -8,6 +8,10 @@ The application is built using **ReactJS** for the frontend and **Spring Boot** 
 
 ## Application Screenshots
 ![image](https://github.com/user-attachments/assets/f1c481ad-0aa3-448c-848c-e72a8ff5dcb9)
+![image](https://github.com/user-attachments/assets/14287fc2-be98-47df-b4aa-3195b6ac70cd)
+![image](https://github.com/user-attachments/assets/fd51a48c-85d0-41ce-8058-a24c0e0cea18)
+
+
 
 
 ## Features
