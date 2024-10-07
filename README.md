@@ -21,16 +21,16 @@ The application is built using **ReactJS** for the frontend and **Spring Boot** 
 ## Technologies Used
     
     ### Frontend
-    - **ReactJS**: For building the user interface.
-    - **Axios**: For making HTTP requests to the backend API.
-    - **Bootstrap CSS**: For styling the application.
-    - **React Router**: For navigation between different views.
+    - ReactJS: For building the user interface.
+    - Axios: For making HTTP requests to the backend API.
+    - Bootstrap CSS: For styling the application.
+    - React Router: For navigation between different views.
     
     ### Backend
-    - **Spring Boot**: For building the RESTful API.
-    - **MySQL**: For the database management system.
-    - **JPA/Hibernate**: For interacting with the database.
-    - **Maven**: For dependency management.
+    - Spring Boot: For building the RESTful API.
+    - MySQL: For the database management system.
+    - JPA/Hibernate: For interacting with the database.
+    - Maven: For dependency management.
     
    
 
@@ -45,23 +45,22 @@ The application is built using **ReactJS** for the frontend and **Spring Boot** 
 
 
     1. **Backend**
-       - **Create the MySQL database**:
+       - Create the MySQL database:
          CREATE DATABASE product;
          
-       - **Configure your database** in `src/main/resources/application.properties`:
-         
+       - Configure your database in `src/main/resources/application.properties`:
          spring.datasource.url=jdbc:mysql://localhost:3306/product
          spring.datasource.username=your_username
          spring.datasource.password=your_password
          
-       - **Build and run the Spring Boot application**:
+       - Build and run the Spring Boot application:
          mvn spring-boot:run
     
     2. **Frontend**
-       - **Navigate to the frontend directory**:
+       - Navigate to the frontend directory:
          cd frontend
          
-       - **Install dependencies and start the React application**:
+       - Install dependencies and start the React application:
          npm install
          npm start
          
