@@ -1,121 +1,136 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { getProductById,  updateProduct } from '../app/app';
-import { useParams } from 'react-router-dom';
-import { AppCategoryContext, getCategories } from '../app/appCategory.js'
+import React, { useEffect, useState, useContext } from 'react';
+import { updateProduct } from '../app/app';
+import { AppCategoryContext, getCategories } from '../app/appCategory.js';
+import { Modal } from 'react-bootstrap';
 
+const EditProduct = ({ show, handleClose, product }) => {
+  const [name, setName] = useState(product?.name || "");
+  const [price, setPrice] = useState(product?.price || 0);
+  const [checked, setChecked] = useState(product?.checked || false);
+  const [categories, setCategories] = useState([]);
+  const [quantity, setQuantity] = useState(product?.quantity || 0);
+  const [alertThreshold, setAlertThreshold] = useState(product?.alertThreshold || 0);
+  const [category, setCategory] = useState(product?.category || null);
+  const [categoryState, setCategoryState] = useContext(AppCategoryContext);
 
-const EditProduct = () => {
-  const {id} = useParams();//récupérer les parametres envoyer de la route
-   const [name, setName]=useState("");
-   const [price, setPrice]=useState(0);
-   const [checked, setChecked]=useState(false); 
-   const [categories, setCategories]=useState([]);
-   const [quantity, setQuantity]=useState(0);
-   const [alertThreshold, setAlertThreshold]=useState(0);
-   const [category, setCategory]=useState(null);
-   const [categoryState, setCategoryState] =  useContext(AppCategoryContext);
-
-    
-   useEffect(() => {
-    handleGetProductById();
+  useEffect(() => {
     handleGetCategories(categoryState.keyword, categoryState.currentPage, categoryState.pageSize);
-}, []);
+  }, [categoryState]);
 
-   const  handleGetCategories = (keyword, page, size) => {
+  const handleGetCategories = (keyword, page, size) => {
     getCategories(keyword, page, size)
-       .then((resp) => {
-            // Extraire les données de la réponse
-       setCategories(resp.data._embedded.categoryList);
-           
-       })
-       .catch((err) => {
-           console.log(err);
-       });
-}
+      .then((resp) => {
+        setCategories(resp.data._embedded.categoryList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-
-  const handleGetProductById = () => {
-    getProductById(id).then(resp => {
-      let product = resp.data;
-      setName(product.name);
-      setPrice(product.price);
-      setChecked(product.checked);
-      setQuantity(product.quantity);
-      setAlertThreshold(product.alertThreshold);
-    })
-   }
-
-   const handleUpdateProduct = (event) =>{
-    event.preventDefault();//In HTML forms, when a submit button is clicked, the form's default behavior is to refresh the page (or navigate to the form's action URL if specified).
-    let product = {
-      id,
-      name ,
-      price ,
+  const handleUpdateProduct = (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+    const updatedProduct = {
+      id: product.id, // Garder l'ID original
+      name,
+      price,
       checked,
       quantity,
       alertThreshold,
-      category: category
-    }
-    updateProduct(product).then((resp)=>{
-      alert(JSON.stringify(resp.data));
-    }).catch((err)=>{
-      console.log(err);
-    })
-   }
+      category,
+    };
+    updateProduct(updatedProduct)
+      .then((resp) => {
+        handleClose(); // Ferme la modal après la soumission
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    
-    <div className='row p-1'>
-      <div className='col-md-6'>
-        <div className='card'>
-          <div className='card-body'>
-         <h1>{id}</h1> 
-            <form onSubmit={handleUpdateProduct}>
-              <div className='mb-3'>
-                <label className='form-label'>Name :</label>
-                <input onChange={(e)=> setName(e.target.value)} value={name} className='form-control'></input>
-              </div>
-              <div className='mb-3'>
-                <label className='form-label'>Price :</label>
-                <input onChange={(e)=> setPrice(e.target.value)} value={price} className='form-control'></input>
-              </div>
-              <div className='mb-3'>
-              <label className='form-label'>Category :</label>
-              <select 
-                   onChange={(e) => {
-                    const categoryId = parseInt(e.target.value);
-                    const category = categories.find(cat => cat.id === categoryId);
-                    setCategory(category); // On met à jour la catégorie sélectionnée
-                  }} 
-                  value={category?.id || ""} 
-                  className='form-control'>
-                  <option value="">Select a category</option>
-                  {categories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>{cat.name}</option>
-                  ))}
-                </select>
-
-              </div>
-              <div className='mb-3'>
-                <label className='form-label'>Quantity :</label>
-                <input onChange={(e)=> setQuantity(e.target.value)} value={quantity} className='form-control'></input>
-              </div>
-              <div className='mb-3'>
-                <label className='form-label'>Alert Threshold :</label>
-                <input onChange={(e)=> setAlertThreshold(e.target.value)} value={alertThreshold} className='form-control'></input>
-              </div>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" onChange={(e)=> setChecked(e.target.value)} checked={checked} id="flexCheckChecked" />
-                  <label className="form-check-label" htmlFor="flexCheckChecked">
-                    Checked
-                  </label>
-              </div>
-              <button className='btn btn-success'>Save</button>
-            </form>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Product</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <form onSubmit={handleUpdateProduct}>
+          <div className='mb-3'>
+            <label className='form-label'>Name :</label>
+            <input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              className='form-control'
+            />
           </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+          <div className='mb-3'>
+            <label className='form-label'>Price :</label>
+            <input
+              type="number"
+              onChange={(e) => setPrice(parseFloat(e.target.value))}
+              value={price}
+              className='form-control'
+            />
+          </div>
+          <div className='mb-3'>
+            <label className='form-label'>Category :</label>
+            <select
+              onChange={(e) => {
+                const categoryId = parseInt(e.target.value);
+                const selectedCategory = categories.find((cat) => cat.id === categoryId);
+                setCategory(selectedCategory); // Mise à jour de la catégorie sélectionnée
+              }}
+              value={category?.id || ""}
+              className='form-control'
+            >
+              <option value="">Select a category</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className='mb-3'>
+            <label className='form-label'>Quantity :</label>
+            <input
+              type="number"
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+              value={quantity}
+              className='form-control'
+            />
+          </div>
+          <div className='mb-3'>
+            <label className='form-label'>Alert Threshold :</label>
+            <input
+              type="number"
+              onChange={(e) => setAlertThreshold(parseInt(e.target.value))}
+              value={alertThreshold}
+              className='form-control'
+            />
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              onChange={(e) => setChecked(e.target.checked)}
+              checked={checked}
+              id="flexCheckChecked"
+            />
+            <label className="form-check-label" htmlFor="flexCheckChecked">
+              Checked
+            </label>
+          </div>
+          <button
+            type="submit"
+            className='btn btn-gray'
+          >
+            Save
+          </button>
+        </form>
+      </Modal.Body>
+    </Modal>
+  );
+};
 
-export default EditProduct
+export default EditProduct;

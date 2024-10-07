@@ -56,7 +56,12 @@ const NewCategory = ({ show, handleClose }) => {
               placeholder="Enter category name"
             />
           </div>
-          <button className='btn btn-success'>Save</button>
+          <button
+            type="submit"
+            className='btn btn-gray'
+          >
+            Save
+          </button>
         </form>
       </Modal.Body>
     </Modal>

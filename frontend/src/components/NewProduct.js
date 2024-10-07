@@ -123,8 +123,13 @@ const NewProduct = ({ show, handleClose }) => {
               Checked
             </label>
           </div>
-          <button className='btn' style={{color: "skyblue"}}>Save</button>
-        </form>
+          <button
+            type="submit"
+            className='btn btn-gray'
+          >
+            Save
+          </button>    
+      </form>
       </Modal.Body>
     </Modal>
 

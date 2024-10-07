@@ -4,12 +4,15 @@ import { AppCategoryContext, deleteCategory, getCategories } from '../../app/app
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NewCategory from './NewCategory.js';
+import EditCategory from './EditCategory.js';
 
 const Category = () => {
     const [query, setQuery] = useState("");
     const [categoryState, setCategoryState] = useContext(AppCategoryContext);
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false); // Gérer l'état du modal
+    const [ShowEditcategoryModal, setShowEditcategoryModal] = useState(false); // Modal pour l'édition
+    const [selectedCategory, setSelectedCategory] = useState(); // État pour le produit sélectionné
 
 
     useEffect(() => {
@@ -59,6 +62,19 @@ const Category = () => {
     const handleShowModal = () => setShowModal(true); // Ouvrir le modal
     const handleCloseModal = () => setShowModal(false); // Fermer le modal
 
+    const handleShowEditCategoryModal = (category) => {
+        console.log(category);
+        setSelectedCategory(category);  // Met à jour le produit sélectionné
+        setShowEditcategoryModal(true); // Ouvre le modal après avoir mis à jour le produit
+    };
+    
+   
+    const handleCloseEditCategoryModal = () => {
+        setShowEditcategoryModal(false); // Fermer le modal d'édition
+        setSelectedCategory(null); // Réinitialiser le produit sélectionné
+        handleGetCategories(categoryState.keyword, categoryState.currentPage, categoryState.pageSize);
+
+    };
 
     return (
         <div className='p-1' style={{ backgroundColor: '#f8f9fa' }}>
@@ -77,19 +93,28 @@ const Category = () => {
                         <div className="col-sm-4 d-flex justify-content-end">
                             <button
                                 type="button"
-                                className="btn btn-info add-new"
-                                style={{ fontSize: "1rem", fontWeight: "40rem", width: "8rem", borderRadius: "3rem" }}
-                                onClick={handleShowModal} // Ouvrir le modal
+                                className="btn add-new"
+                                style={{
+                                    backgroundColor: "#e0e0e0", // Gris clair pour le bouton
+                                    color: "#333", // Gris foncé pour le texte
+                                    fontSize: "1rem",
+                                    fontWeight: "40rem",
+                                    width: "8rem",
+                                    borderRadius: "3rem"
+                                }}onClick={handleShowModal} // Ouvrir le modal
                             >
-                                <FontAwesomeIcon icon={faPlus} style={{ fontSize: "1rem", fontWeight: "18rem" }} />
+                                <FontAwesomeIcon icon={faPlus}
+                                    style={{ fontSize: "1rem", fontWeight: "18rem", color: "#333" }} // Gris foncé pour l'icône également
+                                 />
                                 Add New
                             </button>
                         </div>
                     </div>
                     <div className='crd'>
-                        <div className="table-container" style={{marginTop:"2rem"}}>
-                            <table className='table' style={{borderCollapse: "collapse", width: "100%"}}>
-                                <thead>
+                        <div className="table-container" style={{marginTop:"2rem" 
+                        }} >
+                        <table className='table table-background' style={{borderCollapse: "collapse", width: "100%"}}>
+                        <thead>
                                     <tr>
                                         <th className='thStyle'>ID</th>
                                         <th className='thStyle'>Name</th>
@@ -107,7 +132,7 @@ const Category = () => {
                                                         <FontAwesomeIcon icon={faTrash} />
                                                     </button>
                                                     
-                                                    <button onClick={() => navigate(`/editCategory/${category.id}`)} className="btn btn-outline-success">
+                                                    <button onClick={() => handleShowEditCategoryModal(category)}  className="btn btn-outline-success">
                                                         <FontAwesomeIcon icon={faEdit} />
                                                     </button>
                                                 </td>
@@ -161,6 +186,14 @@ const Category = () => {
                 handleClose={handleCloseModal}
                
             />
+            {/* Modal pour éditer une categorie */}
+        {ShowEditcategoryModal && selectedCategory && (
+            <EditCategory
+                show={ShowEditcategoryModal}
+                handleClose={handleCloseEditCategoryModal}
+                category={selectedCategory} // Pass the selected product for editing
+            />
+        )}
         </div>
     );
 };

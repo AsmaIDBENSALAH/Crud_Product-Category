@@ -1,59 +1,61 @@
-/* Conteneur de la barre de navigation */
-.nav {
-    display: flex;
-    justify-content: space-between; /* Logo à gauche, menu à droite */
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-  }
-  
-  .nav-pills {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Logo */
-  .logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  /* Menu à droite */
-  .nav-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-menu li {
-    margin-left: 20px;
-  }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 10px;
-    transition: color 0.3s, font-size 0.3s;
-  }
-  
-  /* Lien actif */
-  .nav-link.active {
-    color: skyblue;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  /* Effet hover */
-  .nav-link:hover {
-    color: lightblue;
-  }
-  
+/* --------- Global Styles --------- */
+body {
+  background-color: #f8f9fa;
+}
 
-/* Stylisation du tableau */
+/* --------- Navigation Bar --------- */
+.nav {
+  display: flex;
+  justify-content: space-between; /* Logo à gauche, menu à droite */
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.nav-pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px;
+  transition: color 0.3s, font-size 0.3s;
+}
+
+/* Active Link */
+.nav-link.active {
+  color: skyblue;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Hover Effect */
+.nav-link:hover {
+  color: lightblue;
+}
+
+/* --------- Table Styles --------- */
 .table-container {
   overflow-x: auto;
   margin-top: 20px;
@@ -65,11 +67,11 @@ table {
 }
 
 thead th {
-  background-color: #17a2b8;
+  background-color: #3D3C42;
   color: white;
   font-weight: bold;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 tbody tr:nth-child(even) {
@@ -83,39 +85,28 @@ tbody tr:hover {
 th, td {
   padding: 10px;
   border: 1px solid #ddd;
-}
-
-td {
-  text-align: left;
+  text-align: center; /* Centralize content */
   vertical-align: middle;
 }
-
-/* Optionnel : tu peux également ajuster le padding et la hauteur */
-table th, table td {
-  padding: 10px;
-  text-align: center;
-  vertical-align: middle;
-}
-
 
 thead tr .thStyle {
-  background-color: #17a2b8;
+  background-color: #3D3C42;
   color: white;
-
 }
 
 tbody tr .tdStyle {
- 
-  border: "1px solid #ddd";
+  border: 1px solid #ddd;
 }
 
-/* Boutons dans les actions */
-.btn-outline-danger, .btn-outline-success {
+/* --------- Button Styles --------- */
+.btn-outline-danger,
+.btn-outline-success {
   padding: 5px 10px;
   font-size: 0.9rem;
   border-radius: 4px;
 }
 
+/* Danger Button */
 .btn-outline-danger {
   border-color: #dc3545;
   color: #dc3545;
@@ -126,6 +117,7 @@ tbody tr .tdStyle {
   color: white;
 }
 
+/* Success Button */
 .btn-outline-success {
   border-color: #28a745;
   color: #28a745;
@@ -136,7 +128,20 @@ tbody tr .tdStyle {
   color: white;
 }
 
-/* Pagination */
+.btn-gray {
+  background-color: #e0e0e0; /* Light Gray */
+  color: #333; /* Darker Text */
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-gray:hover {
+  background-color: #b3b3b3; /* Slightly darker on hover */
+  color: #000; /* Darker text on hover */
+}
+
+/* --------- Pagination Styles --------- */
 .pagination {
   display: flex;
   justify-content: center;
@@ -149,27 +154,37 @@ tbody tr .tdStyle {
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 0.9rem;
+  background-color: #e0e0e0; /* Light Gray */
+  color: #333; /* Darker Text */
+  border: none;
+}
+
+.pagination button:hover {
+  background-color: #b3b3b3; /* Slightly darker on hover */
 }
 
 .pagination .btn-info {
-  background-color: #17a2b8;
+  background-color: #3D3C42;
   color: white;
 }
 
 .pagination .btn-info:hover {
-  background-color: #138496;
+  background-color: #3D3C42;
 }
 
 .pagination .btn-outline-info {
-  border-color: #17a2b8;
-  color: #17a2b8;
+  border-color: #3D3C42;
+  color: #3D3C42;
 }
 
 .pagination .btn-outline-info:hover {
-  background-color: #17a2b8;
+  background-color: #3D3C42;
   color: white;
 }
 
 
 
-
+.add-new:hover {
+  background-color: #b3b3b3; /* Slightly darker on hover */
+  color: #000; /* Darker text on hover */
+}
