@@ -46,30 +46,25 @@ The application is built using **ReactJS** for the frontend and **Spring Boot** 
 
     1. **Backend**
        - **Create the MySQL database**:
-         ```sql
          CREATE DATABASE product;
-         ```
+         
        - **Configure your database** in `src/main/resources/application.properties`:
-         ```properties
+         
          spring.datasource.url=jdbc:mysql://localhost:3306/product
          spring.datasource.username=your_username
          spring.datasource.password=your_password
-         ```
+         
        - **Build and run the Spring Boot application**:
-         ```bash
          mvn spring-boot:run
-         ```
     
     2. **Frontend**
        - **Navigate to the frontend directory**:
-         ```bash
          cd frontend
-         ```
+         
        - **Install dependencies and start the React application**:
-         ```bash
          npm install
          npm start
-         ```
+         
 
 ### Usage
 
